@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 from typing import Optional
 
@@ -54,12 +54,12 @@ def read_item(item_id: int):
         raise HTTPException(status_code=400, detail="Invalid ID: must be positive.")
     return {"item_id": item_id}
 
-class ResponseItem(BaseModel):
-    name: str
-    price: float
-    is_offer: bool = False
+# 5.1 必須パラメータとオプションパラメータ（文字数制限付き）
+@app.get("/search/")
+def search_items(query: str = Query(..., min_length=3, max_length=50)):
+    return {"query": query}
 
-@app.post("/items/", response_model=ResponseItem)
-def create_item(item: Item):
-    return ResponseItem(name=item.name, price=item.price, is_offer=item.tax > 0)
-
+# 5.2 デフォルト値と範囲指定（数値の制限付き）
+@app.get("/paginate/")
+def paginate(page: int = Query(1, ge=1), size: int = Query(10, le=100)):
+    return {"page": page, "size": size}
