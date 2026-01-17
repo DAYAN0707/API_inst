@@ -27,4 +27,5 @@ FastAPIインストール・セットアップの学習をしました。
     python -m venv fastapi-env
     # Windowsの場合
     fastapi-env\Scripts\activate
+    uvicorn main:app --reload
     
