@@ -23,10 +23,12 @@ API開発における重要な概念（バリデーション、エラーハン�
 
 ## 使用技術
 
-* **Python** 3.x
-* **FastAPI**
-* **Uvicorn** (ASGI サーバー)
-* **Pydantic** (データバリデーション)
+* ## 使用技術
+
+- Python 3.x
+- FastAPI
+- Uvicorn (ASGI サーバー)
+- Pydantic (データバリデーション)
 
 ---
 
