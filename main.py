@@ -94,3 +94,26 @@ def read_item(item_id: int):
 @app.get("/users/me")
 def read_current_user(user: dict = Depends(get_current_user)):
     return user
+
+from contextlib import contextmanager
+from fastapi import Depends
+
+# ===== データベース接続管理の依存関数 =====
+from fastapi import Depends
+
+def get_db():
+    db = "Database connection"
+    print("Open DB")
+    try:
+        yield db
+    finally:
+        print("Close DB")
+
+@app.get("/db/")
+def read_data(db=Depends(get_db)):
+    return {"db_status": db}
+
+
+
+
+
